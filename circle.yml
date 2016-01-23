@@ -7,11 +7,11 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t circleci/circleci-job:latest .
+    - docker build -t circleci/circleci-job .
 
 test:
   override:
-    - docker run -d -p 3010:3010 circleci/circleci-job:latest; sleep 10
+    - docker run -d -p 3010:3010 circleci/circleci-job; sleep 10
     
 
 deployment:
@@ -19,4 +19,4 @@ deployment:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push circleci/circleci-job:latest
+      - docker push circleci/circleci-job
